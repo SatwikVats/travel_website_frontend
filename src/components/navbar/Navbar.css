@@ -1,0 +1,43 @@
+.heading{
+    background-color: var(--background-color);
+    padding: 2px;
+    border-bottom: 1px solid var(--accent-color);
+    justify-content: space-between;
+    position: fixed;
+    size: 15px;
+    width: 100%;
+}
+
+.heading-title{
+    font-size: xx-large;
+    color: #fbf7f7;
+    padding: 0;
+}
+
+.profile-option{
+    color: #fbf7f7;
+    font-size: xx-large;
+    border: 1px;
+}
+
+.menu{
+    border: 2px;
+    size: 15px;
+
+}
+
+.menu:hover{
+    box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
+
+.person{
+    border: 2px;
+    size: 15px;
+
+}
+
+.person:hover{
+    box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
