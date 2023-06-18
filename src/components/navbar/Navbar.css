@@ -40,38 +40,45 @@
     font-size: 0.8cm;
 }
 
-.profile-option{
+.material-icons { 
+    font-size: 48px; 
+}
+
+.material-icons .profile-option {
     color: #fbf7f7;
-    font-size: xx-large;
     border: 1px;
     height: 40px;
     width: 40px;
+    font-weight: bold;
     
 }
 
-.menu{
+
+ .menu {
     border: 2px;
     height: 50px;
     width: 50px;
     justify-content: center;
-    border-right: 5px;
-    padding-right: 5px;
+    border: 10px;
+    padding: 10px;
 
 }
 
 .menu:hover{
-    box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, .1);
     cursor: pointer;
+    text-shadow: 3px 3px 6px 5px rgba(0, 0, 0, .1);
 }
 
-.person{
+.person {
     border: 2px;
     height: 50px;
     width: 50px;
+    border: 10px;
+    padding: 10px;
 
 }
 
 .person:hover{
-    box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, .1);
+    text-shadow: 2px 2px 5px 4px rgba(0, 0, 0, .1);
     cursor: pointer;
 }
