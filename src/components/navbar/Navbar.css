@@ -14,15 +14,48 @@
     padding: 0;
 }
 
+.form-container{
+    background-color: #fbf7f7;
+    height: 1.2cm;
+    border-radius: 8px;
+}
+
+.form-option{
+    font-size: 0.5cm;
+    font-weight: 500;
+    font-style: normal;
+    padding: 8px;
+    color: var(--text-color-primary);
+}
+
+.border-right-1px{
+    border-right: 1.5px solid var(--accent-color);
+    height: 75%;
+}
+
+.search{
+    background-color: var(--primary-color);
+    height: 100%;
+    padding: 8px;
+    font-size: 0.8cm;
+}
+
 .profile-option{
     color: #fbf7f7;
     font-size: xx-large;
     border: 1px;
+    height: 40px;
+    width: 40px;
+    
 }
 
 .menu{
     border: 2px;
-    size: 15px;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    border-right: 5px;
+    padding-right: 5px;
 
 }
 
@@ -33,7 +66,8 @@
 
 .person{
     border: 2px;
-    size: 15px;
+    height: 50px;
+    width: 50px;
 
 }
 
