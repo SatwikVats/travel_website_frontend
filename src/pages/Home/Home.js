@@ -10,6 +10,7 @@ export const Home = () => {
     const [hasMore, setHasMore] = useState(true);
     const [hotelsToShow, setHotelsToShow] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(16);
+    const [testData, setTestData] = useState([]);
 
     const [hotels, setHotels] = useState([]);
     
@@ -17,6 +18,7 @@ export const Home = () => {
         (async () => {
             try{
                 const {data} = await axios.get("https://dull-blue-reindeer-vest.cyclic.app/api/hotels");
+                setTestData(data);
                 setHotels(data? data.slice(0,16) : []);    //To display only first 16 entries.
             }
             catch(err){
@@ -25,16 +27,45 @@ export const Home = () => {
         })();
     },[]);
 
-    //const fetchMoreData
+    const fetchMoreData = () => {
+        if(hotels.length>=testData.length){
+            setHasMore(false);
+            return;
+        }
+        setTimeout(() => {
+            if(hotels && hotels.length>0){
+                setHotels(hotels.concat(testData.slice(currentIndex, currentIndex+16)));
+                setCurrentIndex(prev => prev+16);
+            }
+            else{
+                setHotels([]);
+            }
+        }, 1000);
+    };
 
     return(
         <Fragment>
             <Navbar />
-            <main className="main d-flex align-center wrap gap-larger">
+            
                 {
-                    hotels && hotels.map(hotel => <HotelCard key={hotel._id} hotel={hotel}/>)
-                }
-            </main>
+                    hotels && hotels.length>0? (
+                        <InfiniteScroll 
+                        dataLength={hotels.length}
+                        next={fetchMoreData}
+                        hasMore={hasMore}
+                        loader={hotels.length && <h3 className="alert-text">Loading...</h3>}
+                        endMessage={<p className="alert-text">You have seen it all!</p>}
+                        >
+                            <main className="main d-flex align-center wrap gap-larger">
+                                {
+                                    hotels && hotels.map(hotel => <HotelCard key={hotel._id} hotel={hotel}/>)
+                                }
+                            </main>
+                            
+                        </InfiniteScroll>
+                    ) : (<></>)
+                };
+            
 
         </Fragment>
         
