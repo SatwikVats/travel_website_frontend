@@ -2,13 +2,13 @@ import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { Navbar, HotelCard } from "../../components";
+import { Navbar, HotelCard, Categories } from "../../components";
 import "./Home.css";
 
 export const Home = () => {
 
     const [hasMore, setHasMore] = useState(true);
-    const [hotelsToShow, setHotelsToShow] = useState([]);
+    //const [hotelsToShow, setHotelsToShow] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(16);
     const [testData, setTestData] = useState([]);
 
@@ -46,10 +46,13 @@ export const Home = () => {
     return(
         <Fragment>
             <Navbar />
+            <Categories/>
+                <Fragment className="main-content">
             
                 {
                     hotels && hotels.length>0? (
                         <InfiniteScroll 
+                        className="infinite-scroll"
                         dataLength={hotels.length}
                         next={fetchMoreData}
                         hasMore={hasMore}
@@ -65,6 +68,8 @@ export const Home = () => {
                         </InfiniteScroll>
                     ) : (<></>)
                 };
+
+                </Fragment>
             
 
         </Fragment>
