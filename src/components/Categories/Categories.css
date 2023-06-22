@@ -2,6 +2,7 @@
     padding: 6rem 2rem 1rem 2rem;
     color: var(--text-color-primary);
     position: fixed;
+    background-color: var(--background-color);
     z-index: 1;
     width: 100%;
     padding-left: 6rem;
@@ -9,6 +10,10 @@
 
 .gap-large{
     gap: 2rem;
+}
+
+.border-bottom{
+    border-bottom: 1px solid #000;
 }
 
 .button.btn-category{
@@ -27,4 +32,8 @@
 
 .btn-right{
     right: 5rem;
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }

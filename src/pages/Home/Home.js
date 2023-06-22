@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import { Navbar, HotelCard, Categories } from "../../components";
 import "./Home.css";
+import { useCategory } from "../../context";
 
 export const Home = () => {
 
@@ -13,11 +14,12 @@ export const Home = () => {
     const [testData, setTestData] = useState([]);
 
     const [hotels, setHotels] = useState([]);
+    const {hotelCategory} = useCategory();
     
     useEffect(()=>{
         (async () => {
             try{
-                const {data} = await axios.get("https://dull-blue-reindeer-vest.cyclic.app/api/hotels");
+                const {data} = await axios.get(`https://dull-blue-reindeer-vest.cyclic.app/api/hotels?category=${hotelCategory}`);
                 setTestData(data);
                 setHotels(data? data.slice(0,16) : []);    //To display only first 16 entries.
             }
@@ -25,7 +27,7 @@ export const Home = () => {
                 console.log(err);
             }
         })();
-    },[]);
+    },[hotelCategory]);
 
     const fetchMoreData = () => {
         if(hotels.length>=testData.length){
@@ -45,8 +47,8 @@ export const Home = () => {
 
     return(
         <Fragment>
-            <Navbar />
-            <Categories/>
+            <Navbar className="content-above"/>
+            <Categories className="content-above"/>
                 <Fragment className="main-content">
             
                 {

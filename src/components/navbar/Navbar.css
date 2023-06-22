@@ -6,6 +6,7 @@
     position: fixed;
     size: 15px;
     width: 100%;
+    z-index: 2;
 }
 
 .heading-title{
