@@ -1,0 +1,39 @@
+.categories{
+    padding: 6rem 2rem 1rem 2rem;
+    color: var(--text-color-primary);
+    position: fixed;
+    background-color: var(--background-color);
+    z-index: 1;
+    width: 100%;
+    padding-left: 6rem;
+}
+
+.gap-large{
+    gap: 2rem;
+}
+
+.border-bottom{
+    border-bottom: 1px solid #000;
+}
+
+.button.btn-category{
+    padding: 0;
+    top: 6rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    color: var(--text-color-primary);
+    height: 24px;
+    width: 24px;
+}
+
+.btn-left{
+    left: 2rem;
+}
+
+.btn-right{
+    right: 5rem;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}

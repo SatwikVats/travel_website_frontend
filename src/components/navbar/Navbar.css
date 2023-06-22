@@ -1,0 +1,85 @@
+.heading{
+    background-color: var(--background-color);
+    padding: 2px;
+    border-bottom: 1px solid var(--accent-color);
+    justify-content: space-between;
+    position: fixed;
+    size: 15px;
+    width: 100%;
+    z-index: 2;
+}
+
+.heading-title{
+    font-size: xx-large;
+    color: #fbf7f7;
+    padding: 0;
+}
+
+.form-container{
+    background-color: #fbf7f7;
+    height: 1.2cm;
+    border-radius: 8px;
+}
+
+.form-option{
+    font-size: 0.5cm;
+    font-weight: 500;
+    font-style: normal;
+    padding: 8px;
+    color: var(--text-color-primary);
+}
+
+.border-right-1px{
+    border-right: 1.5px solid var(--accent-color);
+    height: 75%;
+}
+
+.search{
+    background-color: var(--primary-color);
+    height: 100%;
+    padding: 8px;
+    font-size: 0.8cm;
+}
+
+.material-icons { 
+    font-size: 48px; 
+}
+
+.material-icons .profile-option {
+    color: #fbf7f7;
+    border: 1px;
+    height: 40px;
+    width: 40px;
+    font-weight: bold;
+    
+}
+
+
+ .menu {
+    border: 2px;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    border: 10px;
+    padding: 10px;
+
+}
+
+.menu:hover{
+    cursor: pointer;
+    text-shadow: 3px 3px 6px 5px rgba(0, 0, 0, .1);
+}
+
+.person {
+    border: 2px;
+    height: 50px;
+    width: 50px;
+    border: 10px;
+    padding: 10px;
+
+}
+
+.person:hover{
+    text-shadow: 2px 2px 5px 4px rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
