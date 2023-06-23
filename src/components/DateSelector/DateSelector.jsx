@@ -14,7 +14,12 @@ export const DateSelector = ({placeholder, checkInType}) => {
             type: checkInType === "in"? "CHECK_IN" : "CHECK_OUT",
             payload: date,
         })
+    }
 
+    const handleDateFocus = () => {
+        dateDispatch({
+            type: "DATE_FOCUS",
+        });
     }
 
     console.log({checkInDate, checkOutDate});
@@ -23,6 +28,7 @@ export const DateSelector = ({placeholder, checkInType}) => {
         <ReactDatePicker
             selected={checkInType==="in"? checkInDate : checkOutDate}
             onChange={date => handleDateChange(date)}
+            onFocus={handleDateFocus}
             className="search-dest input" 
             dateFormat="dd/MM/yyyy" 
             placeholderText="Add Dates"
