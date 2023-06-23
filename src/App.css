@@ -8,7 +8,7 @@
   --background-color: rgb(246, 245, 243);
   --container-border-color: #707072;
   --accent-color: #a2a1a1;
-  --overlay: black;
+  --overlay: rgba(45, 45, 45, 0.296);
   --primary-color: #fc924c;
   --text-color-primary: #363030;
 }
