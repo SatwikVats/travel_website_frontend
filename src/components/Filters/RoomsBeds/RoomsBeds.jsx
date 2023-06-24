@@ -1,5 +1,3 @@
-import "./RoomsBeds.css";
-
 export const RoomsBeds = () => {
     const numberOfAmenities = ["Any", "1", "2", "3", "4", "5+"];
 

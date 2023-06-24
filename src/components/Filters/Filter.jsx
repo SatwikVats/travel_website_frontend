@@ -1,5 +1,5 @@
 import "./Filter.css";
-import { PriceRange, RoomsBeds, PropertyType } from "./index";
+import { PriceRange, RoomsBeds, PropertyType, Ratings, FreeCancellation} from "./index";
 
 export const Filter = () => {
     return (
@@ -14,6 +14,12 @@ export const Filter = () => {
                 <PriceRange />
                 <RoomsBeds />
                 <PropertyType />
+                <Ratings />
+                <FreeCancellation />
+                <div className="d-flex align-center justify-space-between">
+                    <button className="button cursor btn-link-primary">Clear All</button>
+                    <button className="button cursor btn-primary btn-apply">Apply</button>
+                </div>
             </div>
         </div>
     )
