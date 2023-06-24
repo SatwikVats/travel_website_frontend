@@ -1,7 +1,18 @@
 import "./FinalPrice.css";
+import {useDate} from "../../context";
+import {DateSelector} from "../DateSelector/DateSelector";
 
 export const FinalPrice = ({singleHotel}) => {
     const {price, rating} =singleHotel;
+    const {guests, dateDispatch} = useDate();
+
+    const handleGuestChange = (event) => {
+        dateDispatch({
+            type: "GUESTS",
+            payload: event.target.value,
+        })
+
+    }
     
     return(
         <div className="price-details-container d-flex direction-column gap shadow">
@@ -16,14 +27,18 @@ export const FinalPrice = ({singleHotel}) => {
                 <div className="grid-container-two-col selected-dates">
                     <div className="checkin loc-container">
                         <label>Check In</label>
+                        <DateSelector checkInType="in"/>
                     </div>
                     <div className="checkin loc-container">
                         <label>Check Out</label>
+                        <DateSelector checkInType="out"/>
                     </div>
                 </div>
                 <div className="guests gutter-sm">
-                    <p>GUESTS</p>
-                    <span>2 Guests</span>
+                    <p>GUESTS</p>{
+                        guests<=0 ? (<input className="guest-count-input" type="number" placeholder="Add Guests" 
+                        value={guests} onChange={handleGuestChange}/>) : <span>{guests} Guests</span>
+                    }
                 </div>
             </div>
             <div>
