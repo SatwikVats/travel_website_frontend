@@ -12,8 +12,9 @@ export const PriceRange = () => {
   return (
     <div className="filter-container">
         <span className='filter-label'>Price Range</span>
-        <Box sx={{ width: 300 }}>
+        <Box>
         <Slider
+            sx= {{ color: "#fc924c"}}
             className="price-range"
             getAriaLabel={() => "Minimum Difference"}
             value={value}
