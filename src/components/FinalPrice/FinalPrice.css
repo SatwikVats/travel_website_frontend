@@ -46,3 +46,11 @@
 .fs-large{
     font-size:medium;
 }
+
+.guest-count-input{
+    border: none;
+}
+
+.guest-count-input:focus {
+    outline: none;
+}
