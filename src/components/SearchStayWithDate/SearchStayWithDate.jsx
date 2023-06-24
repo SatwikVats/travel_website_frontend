@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { DateSelector } from "../DateSelector/DateSelector";
 import "./SearchStayWithDate.css";
 import { useDate, useCategory } from "../../context";
+import { useNavigate } from "react-router-dom";
 
 export const SearchStayWithDate = () => {
     const [hotels, setHotels] = useState([]);
     const {destination, guests, isSearchResultOpen, dateDispatch} = useDate();
     const {hotelCategory} = useCategory();
+    const navigate = useNavigate();
 
     useEffect(()=>{
         (async () => {
@@ -49,6 +51,13 @@ export const SearchStayWithDate = () => {
         })
     }
 
+    const handleSearchButtonClick = () => {
+        dateDispatch({
+            type: "CLOSE_SEARCH_MODAL"
+        })
+        navigate(`/hotels/${destination}`)
+    }
+
     const destinationOptions = hotels.filter(({address, city, state, country})=> 
     address.toLowerCase().includes(destination.toLowerCase()) ||
     city.toLowerCase().includes(destination.toLowerCase()) ||
@@ -85,7 +94,7 @@ export const SearchStayWithDate = () => {
                     placeholder="Add Guests"
                     onChange={handleGuestChange}/>
                 </div>
-                <div className="search-container d-flex align-center">
+                <div className="search-container d-flex align-center cursor-pointer" onClick={handleSearchButtonClick}>
                     <span className="material-icons-outlined">search</span>
                     <span>Search</span>
                 </div>

@@ -35,6 +35,11 @@ export const DateReducer = (state, {type, payload}) => {
                 ...state,
                 isSearchResultOpen: true,
             }
+        case "CLOSE_SEARCH_MODAL":
+            return{
+                ...state,
+                isSearchModalOpen: !state.isSearchModalOpen,
+            }
         default:
             return state;
     }

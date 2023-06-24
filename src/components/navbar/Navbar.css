@@ -83,3 +83,7 @@
     text-shadow: 2px 2px 5px 4px rgba(0, 0, 0, .1);
     cursor: pointer;
 }
+
+.cursor-pointer{
+    cursor: pointer;
+}
