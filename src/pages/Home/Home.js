@@ -2,9 +2,9 @@ import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { Navbar, HotelCard, Categories, SearchStayWithDate } from "../../components";
+import { Navbar, HotelCard, Categories, SearchStayWithDate, Filter } from "../../components";
 import "./Home.css";
-import { useCategory, useDate } from "../../context";
+import { useCategory, useDate, useFilter } from "../../context";
 
 export const Home = () => {
 
@@ -16,6 +16,7 @@ export const Home = () => {
     const [hotels, setHotels] = useState([]);
     const {hotelCategory} = useCategory();
     const {isSearchModalOpen} = useDate();
+    const {isFilterModalOpen, priceRange} = useFilter();
     
     useEffect(()=>{
         (async () => {
@@ -46,11 +47,14 @@ export const Home = () => {
         }, 1000);
     };
 
+    const filteredHotelsByPrice = hotels.filter(hotel=> 
+        hotel.price>=priceRange[0] && hotel.price<=priceRange[1]);
+
     return(
         <div className="relative">
             <Navbar className="content-above"/>
             <Categories className="content-above"/>
-                <Fragment className="main-content">
+                <Fragment>
             
                 {
                     hotels && hotels.length>0? (
@@ -64,7 +68,8 @@ export const Home = () => {
                         >
                             <main className="main d-flex align-center wrap gap-larger">
                                 {
-                                    hotels && hotels.map(hotel => <HotelCard key={hotel._id} hotel={hotel}/>)
+                                    filteredHotelsByPrice && filteredHotelsByPrice.map(hotel => 
+                                    <HotelCard key={hotel._id} hotel={hotel}/>)
                                 }
                             </main>
                             
@@ -74,6 +79,9 @@ export const Home = () => {
                 </Fragment>
                 {
                     isSearchModalOpen && <SearchStayWithDate />
+                }
+                {
+                    isFilterModalOpen && <Filter/>
                 }
         </div>        
     )

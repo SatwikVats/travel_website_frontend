@@ -76,3 +76,13 @@
     font-weight: normal;
     padding: 8px 1.5rem;
 }
+
+.btn-close{
+    height: 3rem;
+    width: 3rem;
+}
+
+.btn-close:hover{
+    background-color: var(--accent-color);
+    border-radius: 50%;
+}

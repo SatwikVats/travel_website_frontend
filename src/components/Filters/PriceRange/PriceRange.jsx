@@ -1,14 +1,42 @@
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import "./PriceRange.css";
+import { useFilter } from '../../../context';
 
 function valuetext(value) {
   return `${value}`;
 }
 
-const value = 10;
+const minDifference = 500;
 
 export const PriceRange = () => {
+  const {priceRange, filterDispatch} = useFilter();
+
+  console.log({priceRange});
+
+  const handlePriceChange = (event, newValue, activeThumb) => {
+    if(!Array.isArray(newValue)){
+      return;
+    }
+    if(activeThumb===0){
+      filterDispatch({
+        type: "MINIMUM_PRICE",
+        payload: {
+          newValue, priceRange, minDifference
+        }
+      })
+    }
+    else{
+      filterDispatch({
+        type: "MAXIMUM_PRICE",
+        payload: {
+          newValue, priceRange, minDifference
+        }
+      })
+    }
+
+  }
+
   return (
     <div className="filter-container">
         <span className='filter-label'>Price Range</span>
@@ -17,9 +45,10 @@ export const PriceRange = () => {
             sx= {{ color: "#fc924c"}}
             className="price-range"
             getAriaLabel={() => "Minimum Difference"}
-            value={value}
+            value={priceRange}
             valueLabelDisplay="on"
             getAriaValueText={valuetext}
+            onChange={handlePriceChange}
             min={100}
             max={25000}
             disableSwap
