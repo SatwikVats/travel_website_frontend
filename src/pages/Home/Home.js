@@ -5,7 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Navbar, HotelCard, Categories, SearchStayWithDate, Filter } from "../../components";
 import "./Home.css";
 import { useCategory, useDate, useFilter } from "../../context";
-import { GetHotelsByPrice, GetHotelsByRoomsAndBeds} from "../../utils";
+import { GetHotelsByPrice, GetHotelsByRoomsAndBeds, GetHotelsByPropertyType} from "../../utils";
 
 export const Home = () => {
 
@@ -17,7 +17,7 @@ export const Home = () => {
     const [hotels, setHotels] = useState([]);
     const {hotelCategory} = useCategory();
     const {isSearchModalOpen} = useDate();
-    const {isFilterModalOpen, priceRange, noOfBathrooms, noOfBedrooms, noOfBeds} = useFilter();
+    const {isFilterModalOpen, priceRange, noOfBathrooms, noOfBedrooms, noOfBeds, propertyType} = useFilter();
     
     useEffect(()=>{
         (async () => {
@@ -50,6 +50,7 @@ export const Home = () => {
 
     const filteredHotelsByPrice = GetHotelsByPrice(hotels, priceRange);
     const filteredHotelsByRoomsAndBeds = GetHotelsByRoomsAndBeds(filteredHotelsByPrice, noOfBathrooms, noOfBedrooms, noOfBeds);
+    const filteredHotelsByProperty = GetHotelsByPropertyType(filteredHotelsByRoomsAndBeds, propertyType);
 
     return(
         <div className="relative">
@@ -69,7 +70,7 @@ export const Home = () => {
                         >
                             <main className="main d-flex align-center wrap gap-larger">
                                 {
-                                    filteredHotelsByRoomsAndBeds && filteredHotelsByRoomsAndBeds.map(hotel => 
+                                    filteredHotelsByProperty && filteredHotelsByProperty.map(hotel => 
                                     <HotelCard key={hotel._id} hotel={hotel}/>)
                                 }
                             </main>
