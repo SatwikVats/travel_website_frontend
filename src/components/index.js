@@ -6,3 +6,4 @@ export {HotelDetails} from "../components/HotelDetails/HotelDetails";
 export {FinalPrice} from "../components/FinalPrice/FinalPrice";
 export {DateSelector} from "../components/DateSelector/DateSelector";
 export {SearchStayWithDate} from "../components/SearchStayWithDate/SearchStayWithDate";
+export {Filter} from "../components/Filters/Filter";

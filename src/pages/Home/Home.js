@@ -2,9 +2,10 @@ import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { Navbar, HotelCard, Categories, SearchStayWithDate } from "../../components";
+import { Navbar, HotelCard, Categories, SearchStayWithDate, Filter } from "../../components";
 import "./Home.css";
-import { useCategory, useDate } from "../../context";
+import { useCategory, useDate, useFilter } from "../../context";
+import { GetHotelsByPrice, GetHotelsByRoomsAndBeds, GetHotelsByPropertyType, GetHotelsByRating, GetHotelsByCancellation} from "../../utils";
 
 export const Home = () => {
 
@@ -16,6 +17,7 @@ export const Home = () => {
     const [hotels, setHotels] = useState([]);
     const {hotelCategory} = useCategory();
     const {isSearchModalOpen} = useDate();
+    const {isFilterModalOpen, priceRange, noOfBathrooms, noOfBedrooms, noOfBeds, propertyType, traveloRating, isCancellable} = useFilter();
     
     useEffect(()=>{
         (async () => {
@@ -46,11 +48,17 @@ export const Home = () => {
         }, 1000);
     };
 
+    const filteredHotelsByPrice = GetHotelsByPrice(hotels, priceRange);
+    const filteredHotelsByRoomsAndBeds = GetHotelsByRoomsAndBeds(filteredHotelsByPrice, noOfBathrooms, noOfBedrooms, noOfBeds);
+    const filteredHotelsByProperty = GetHotelsByPropertyType(filteredHotelsByRoomsAndBeds, propertyType);
+    const filteredHotelsByRatings = GetHotelsByRating(filteredHotelsByProperty, traveloRating);
+    const filteredHotelsByCancellation = GetHotelsByCancellation(filteredHotelsByRatings, isCancellable); //Not working currently.
+
     return(
         <div className="relative">
             <Navbar className="content-above"/>
             <Categories className="content-above"/>
-                <Fragment className="main-content">
+                <Fragment>
             
                 {
                     hotels && hotels.length>0? (
@@ -64,7 +72,8 @@ export const Home = () => {
                         >
                             <main className="main d-flex align-center wrap gap-larger">
                                 {
-                                    hotels && hotels.map(hotel => <HotelCard key={hotel._id} hotel={hotel}/>)
+                                    filteredHotelsByRatings && filteredHotelsByRatings.map(hotel => 
+                                    <HotelCard key={hotel._id} hotel={hotel}/>)
                                 }
                             </main>
                             
@@ -74,6 +83,9 @@ export const Home = () => {
                 </Fragment>
                 {
                     isSearchModalOpen && <SearchStayWithDate />
+                }
+                {
+                    isFilterModalOpen && <Filter/>
                 }
         </div>        
     )

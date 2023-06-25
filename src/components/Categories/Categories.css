@@ -27,13 +27,27 @@
 }
 
 .btn-left{
-    left: 2rem;
+    left: 1rem;
 }
 
 .btn-right{
-    right: 5rem;
+    right: 10rem;
 }
 
 .cursor-pointer{
     cursor: pointer;
+}
+
+.button.btn-filter {
+    top: 5.5rem;
+    right: 2rem;
+    padding: 8px 1rem;
+    z-index: 6;
+    border-radius: 2rem;
+    border: 1px solid var(--accent-color);
+}
+
+.btn-filter:hover,
+.btn-category:hover{
+    box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.1);
 }
