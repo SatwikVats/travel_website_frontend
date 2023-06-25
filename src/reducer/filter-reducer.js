@@ -41,6 +41,11 @@ export const FilterReducer = (state, {type, payload}) => {
                 ...state,
                 traveloRating: Number(payload),
             }
+        case "CANCELLABLE":
+            return{
+                ...state,
+                isCancellable: payload,
+            }
         default:
             return state;
     }

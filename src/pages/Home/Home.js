@@ -5,7 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Navbar, HotelCard, Categories, SearchStayWithDate, Filter } from "../../components";
 import "./Home.css";
 import { useCategory, useDate, useFilter } from "../../context";
-import { GetHotelsByPrice, GetHotelsByRoomsAndBeds, GetHotelsByPropertyType, GetHotelsByRating} from "../../utils";
+import { GetHotelsByPrice, GetHotelsByRoomsAndBeds, GetHotelsByPropertyType, GetHotelsByRating, GetHotelsByCancellation} from "../../utils";
 
 export const Home = () => {
 
@@ -17,7 +17,7 @@ export const Home = () => {
     const [hotels, setHotels] = useState([]);
     const {hotelCategory} = useCategory();
     const {isSearchModalOpen} = useDate();
-    const {isFilterModalOpen, priceRange, noOfBathrooms, noOfBedrooms, noOfBeds, propertyType, traveloRating} = useFilter();
+    const {isFilterModalOpen, priceRange, noOfBathrooms, noOfBedrooms, noOfBeds, propertyType, traveloRating, isCancellable} = useFilter();
     
     useEffect(()=>{
         (async () => {
@@ -52,6 +52,7 @@ export const Home = () => {
     const filteredHotelsByRoomsAndBeds = GetHotelsByRoomsAndBeds(filteredHotelsByPrice, noOfBathrooms, noOfBedrooms, noOfBeds);
     const filteredHotelsByProperty = GetHotelsByPropertyType(filteredHotelsByRoomsAndBeds, propertyType);
     const filteredHotelsByRatings = GetHotelsByRating(filteredHotelsByProperty, traveloRating);
+    const filteredHotelsByCancellation = GetHotelsByCancellation(filteredHotelsByRatings, isCancellable); //Not working currently.
 
     return(
         <div className="relative">

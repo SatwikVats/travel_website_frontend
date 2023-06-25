@@ -8,17 +8,18 @@ const initialValue = {
     noOfBedrooms: "Any",
     noOfBeds: "Any",
     propertyType: "Any",
-    traveloRating: "1"
+    traveloRating: "1",
+    isCancellable: true,
 }
 
 const FilterContext = createContext(initialValue);
 
 const FilterProvider = ({children}) => {
-    const [{isFilterModalOpen, priceRange, noOfBathrooms, noOfBedrooms, noOfBeds, propertyType, traveloRating}, filterDispatch] = useReducer(FilterReducer, initialValue);
+    const [{isFilterModalOpen, priceRange, noOfBathrooms, noOfBedrooms, noOfBeds, propertyType, traveloRating, isCancellable}, filterDispatch] = useReducer(FilterReducer, initialValue);
 
     return(
         <FilterContext.Provider value={{isFilterModalOpen, priceRange, noOfBathrooms, noOfBedrooms,
-         noOfBeds, propertyType, traveloRating, filterDispatch}} >
+         noOfBeds, propertyType, traveloRating, isCancellable, filterDispatch}} >
             {children}
         </FilterContext.Provider>
     )
