@@ -36,6 +36,11 @@ export const FilterReducer = (state, {type, payload}) => {
                 ...state,
                 propertyType: payload,
             }
+        case "RATING":
+            return{
+                ...state,
+                traveloRating: Number(payload),
+            }
         default:
             return state;
     }
