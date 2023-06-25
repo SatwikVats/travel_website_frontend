@@ -16,6 +16,21 @@ export const FilterReducer = (state, {type, payload}) => {
                 ...state,
                 priceRange: [payload.priceRange[0], Math.max(payload.newValue[1], payload.priceRange[0]+payload.minDifference)]
             }
+        case "BEDROOMS":
+            return{
+                ...state,
+                noOfBedrooms: payload==="Any"? payload : payload==="5+"? 5 : Number(payload),
+            }
+        case "BATHROOMS":
+            return{
+                ...state,
+                noOfBathrooms: payload==="Any"? payload : payload==="5+"? 5 : Number(payload),
+            }
+        case "BEDS":
+            return{
+                ...state,
+                noOfBeds: payload==="Any"? payload : payload==="5+"? 5 : Number(payload),
+            }
         default:
             return state;
     }

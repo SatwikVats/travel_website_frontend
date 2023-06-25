@@ -43,7 +43,8 @@
     margin-right: 1rem;
 }
 
-.on-hover:hover {
+.on-hover:hover,
+.selected {
     color: var(--background-color);
     background-color: var(--text-color-primary);
 
