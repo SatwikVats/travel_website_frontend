@@ -1,6 +1,9 @@
 import "./Auth.css";
 import { useAuth } from "../../context";
 import { validateName, validateEmail, validateNumber, validatePassword } from "../../utils";
+import { signupHandler } from "../../services";
+
+let isNumberValid, isNameValid, isEmailValid, isPasswordValid, isConfirmPasswordValid;
 
 export const AuthSignup = () => {
     const {name, email, password, number, confirmPassword, authDispatch} = useAuth();
@@ -8,7 +11,7 @@ export const AuthSignup = () => {
     console.log({name, email, password, number, confirmPassword});
 
     const handleNumberChange = (event) => {
-        const isNumberValid = validateNumber(event.target.value);
+        isNumberValid = validateNumber(event.target.value);
         if(isNumberValid){
             console.log("Valid number");
             authDispatch({
@@ -23,7 +26,7 @@ export const AuthSignup = () => {
 
 
     const handleEmailChange = (event) => {
-        const isEmailValid = validateEmail(event.target.value);
+        isEmailValid = validateEmail(event.target.value);
         if(isEmailValid){
             console.log("Valid email");
             authDispatch({
@@ -38,7 +41,7 @@ export const AuthSignup = () => {
 
 
     const handleNameChange = (event) => {
-        const isNameValid = validateName(event.target.value);
+        isNameValid = validateName(event.target.value);
         if(isNameValid){
             console.log("Valid name");
             authDispatch({
@@ -53,7 +56,7 @@ export const AuthSignup = () => {
 
 
     const handlePasswordChange = (event) => {
-        const isPasswordValid = validatePassword(event.target.value);
+        isPasswordValid = validatePassword(event.target.value);
         if(isPasswordValid){
             console.log("Valid password");
             authDispatch({
@@ -67,7 +70,7 @@ export const AuthSignup = () => {
     }
 
     const handleConfirmPasswordChange = (event) => {
-        const isConfirmPasswordValid = validatePassword(event.target.value);
+        isConfirmPasswordValid = validatePassword(event.target.value);
         if(isConfirmPasswordValid){
             console.log("Valid confirmPassword.");
             authDispatch({
@@ -80,9 +83,20 @@ export const AuthSignup = () => {
         }
     }
 
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        if(isNameValid && isNumberValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && 
+            isPasswordValid===isConfirmPasswordValid){
+            signupHandler(name, number, email, password);
+        }
+        authDispatch({
+            type: "CLEAR_USER_DATA",
+        });
+    };
+
     return(
         <div className="auth-container">
-            <form>
+            <form onSubmit={handleFormSubmit}>
                 <div className="d-flex direction-column lb-in-container">
                     <label className="auth-label" type="number">Mobile Number <span className="asterisk">*</span>{" "}</label>
                     <input className="auth-input" placeholder="Enter Mobile Number" maxLength="10" defaultValue={number}
