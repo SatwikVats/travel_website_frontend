@@ -29,19 +29,20 @@ export const HotelCard = ({hotel}) => {
                 wishlistDispatch({            
                     type: "ADD_TO_WISHLIST",
                     payload: hotel,            
-                })
+                });
+                navigate(`/wishlist`);
             }
             else{
                 wishlistDispatch({            
                     type: "REMOVE_FROM_WISHLIST",
                     payload: _id,            
-                })
+                });
             }
         }
         else{
             authDispatch({
                 type: "SHOW_AUTH_MODAL",
-            })
+            });
         }
     }
 

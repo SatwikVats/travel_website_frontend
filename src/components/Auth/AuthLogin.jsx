@@ -57,6 +57,24 @@ export const AuthLogin = () => {
         authDispatch({
             type: "SHOW_AUTH_MODAL",
         });
+    };
+
+    const handleTestCredentialsClick = async () => {
+        const {accessToken, username} = await loginHandler(8888888888, "Kyle@123");
+        authDispatch({
+            type: "SET_ACCESS_TOKEN",
+            payload: accessToken,
+        });
+        authDispatch({
+            type: "SET_USERNAME",
+            payload: username,
+        });
+        authDispatch({
+            type: "CLEAR_USER_DATA",
+        });
+        authDispatch({
+            type: "SHOW_AUTH_MODAL",
+        });
     }
 
     return(
@@ -77,7 +95,8 @@ export const AuthLogin = () => {
                 </div>
             </form>
             <div className="cts">
-                <button className="button btn-outline-primary cursor-pointer">
+                <button className="button btn-outline-primary cursor-pointer" 
+                onClick={handleTestCredentialsClick}>
                     Login with Test Credentials
                 </button>
             </div>
