@@ -1,19 +1,15 @@
 import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useDate } from "../../context";
 import "./Payment.css";
 
 export const Payment = () => {
-    const params = useParams();
-    const {id} = params;
-
+    const {id} = useParams();
     const[singleHotel, setSingleHotel] = useState({});
-    const {guests, dateDispatch, checkInDate, checkOutDate} = useDate();
 
-    const numberOfNights = checkInDate && checkOutDate ?
-    (checkOutDate.getTime()-checkInDate.getTime())/(1000*3600*24) : 0;
+    const navigate = useNavigate();
 
     useEffect( ()=>{
         (async() => {
@@ -28,9 +24,55 @@ export const Payment = () => {
     })();
     },[id]);
 
+    const {guests, checkInDate, checkOutDate} = useDate();
+
+    const numberOfNights = checkInDate && checkOutDate ?
+    (checkOutDate.getTime()-checkInDate.getTime())/(1000*3600*24) : 0;
+
     const {image, name, address, state, rating, price} = singleHotel;
 
-    const totalPayableAmount = price*numberOfNights + 200;
+    
+    const totalPayableAmount = price? ((price*numberOfNights + 200)*100) : 10000;
+
+    const loadScript = (source) => {
+        return new Promise(resolve=>{
+            const script = document.createElement("script");
+            script.src = source;
+            script.onload = () => resolve(true);
+            script.onerror = () => resolve(false);
+            document.body.appendChild(script);
+        })
+    }
+
+    const handleConfirmBookingClick = async () => {
+        const response = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
+        if(!response){
+            console.log({message: "Razorpay SDK failed to load"});
+        }
+
+        const options = {
+            key: "rzp_test_9wI6oIukOd6rLW",
+            amount: totalPayableAmount,
+            currency: "INR",
+            name: "CheckInn",
+            email: "vats.satwik@gmail.com",
+            contact: "9999999999",
+            description: "Thankyou for booking with us!",
+
+            handler: ({payment_id}) => {
+                navigate("/");
+            },
+            prefill: {
+                name: "Satwik Vats",
+                email: "vats.satwik@gmail.com",
+                contact: "9999999999",
+            }
+        };
+
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+
+    }
 
     return(
         <Fragment>
@@ -46,10 +88,13 @@ export const Payment = () => {
                         <h3>Your Trip</h3>
                         <div>
                             <p>Dates</p>
-                            <span>
-                            {checkInDate.toLocaleDateString("en-US", {day: "numeric", month: "short"})} -
-                            {checkOutDate.toLocaleDateString("en-US", {day: "numeric", month: "short"})}
-                            </span>
+                            {(checkInDate && checkOutDate)?
+                                <span>
+                                {checkInDate.toLocaleDateString("en-US", {day: "numeric", month: "short"})} -
+                                {checkOutDate.toLocaleDateString("en-US", {day: "numeric", month: "short"})}
+                                </span> : <span></span>
+
+                            }
                         </div>
                         <div>
                             <p>Guests</p>
@@ -60,7 +105,7 @@ export const Payment = () => {
                         <h3>Pay with</h3>
                         <div>Razorpay</div>
                     </div>
-                    <button className="button btn-primary btn-reserve cursor btn-pay">
+                    <button className="button btn-primary btn-reserve cursor btn-pay" onClick={handleConfirmBookingClick}>
                         Confirm Booking
                     </button>
                 </div>
@@ -105,3 +150,4 @@ export const Payment = () => {
         </Fragment>
     )
 }
+
