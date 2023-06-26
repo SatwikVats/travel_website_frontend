@@ -1,17 +1,26 @@
 import "./FinalPrice.css";
 import {useDate} from "../../context";
 import {DateSelector} from "../DateSelector/DateSelector";
+import { useNavigate } from "react-router-dom";
 
 export const FinalPrice = ({singleHotel}) => {
-    const {price, rating} =singleHotel;
-    const {guests, dateDispatch} = useDate();
+    const {_id, price, rating, numberOfguest} =singleHotel;
+    const {guests, dateDispatch, checkInDate, checkOutDate} = useDate();
+
+    const numberOfNights = checkInDate && checkOutDate ?
+    (checkOutDate.getTime()-checkInDate.getTime())/(1000*3600*24) : 0;
+
+    const navigate = useNavigate();
 
     const handleGuestChange = (event) => {
         dateDispatch({
             type: "GUESTS",
             payload: event.target.value,
-        })
+        });
+    }
 
+    const handleReserveClick = () => {
+        navigate(`/confirm-booking/stay/:${_id}`);
     }
     
     return(
@@ -36,18 +45,22 @@ export const FinalPrice = ({singleHotel}) => {
                 </div>
                 <div className="guests gutter-sm">
                     <p>GUESTS</p>{
-                        guests<=0 ? (<input className="guest-count-input" type="number" placeholder="Add Guests" 
-                        value={guests} onChange={handleGuestChange}/>) : <span>{guests} Guests</span>
+                        guests>numberOfguest ? <div><input className="guest-count-input" type="number" 
+                        placeholder="Add Guests" value={guests} max={numberOfguest}  min={1} onChange={handleGuestChange}/>
+                        <span className="guests-exceeded-warning">(Maximum {numberOfguest} Guests allowed!)</span></div> : 
+                        (<input className="guest-count-input" type="number" placeholder="Add Guests" 
+                        value={guests} max={numberOfguest}  min={1} onChange={handleGuestChange}/>)
                     }
                 </div>
             </div>
             <div>
-                <button className="button btn-reserve btn-primary cursor" color="#fb7f2b">Reserve</button>
+                <button className="button btn-reserve btn-primary cursor" color="#fb7f2b" 
+                onClick={handleReserveClick} disabled={checkInDate && checkOutDate && guests>0? false: true}>Reserve</button>
             </div>
             <div className="price-distribution d-flex direction-column">
                 <div className="final-price d-flex align-center justify-space-between">
-                    <span>Rs. {price} X 2 Nights</span>
-                    <span>Rs. {price*2}</span>
+                    <span>Rs. {price} X {numberOfNights} Nights</span>
+                    <span>Rs. {price*numberOfNights}</span>
                 </div>
                 <div className="final-price d-flex align-center justify-space-between">
                     <span>Service Fee</span>
@@ -55,7 +68,7 @@ export const FinalPrice = ({singleHotel}) => {
                 </div>
                 <div className="final-price d-flex align-center justify-space-between">
                     <span>Total</span>
-                    <span>Rs. {price*2 + 200}</span>
+                    <span>Rs. {price*numberOfNights + 200}</span>
                 </div>
             </div>
         </div>

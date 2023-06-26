@@ -54,3 +54,9 @@
 .guest-count-input:focus {
     outline: none;
 }
+
+.guests-exceeded-warning{
+    color: red;
+    font-size: 0.875rem;
+    margin-left: 8px;
+}
