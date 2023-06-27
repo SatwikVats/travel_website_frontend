@@ -1,10 +1,15 @@
 import { Fragment } from "react";
-import { Navbar, HotelCard } from "../../components";
+import { Navbar, HotelCard, AuthModal, Dropdown } from "../../components";
 import { useWishlist } from "../../context";
+import { useAuth } from "../../context";
 import "./Wishlist.css";
 
 export const Wishlist = () => {
     const {wishlist} = useWishlist();
+
+    const { accessToken, isAuthModalOpen, isDropdownOpen} = useAuth();
+
+    
 
     return(
     <Fragment>
@@ -16,6 +21,8 @@ export const Wishlist = () => {
 
             }
         </section>
+        {isAuthModalOpen && <AuthModal />}
+        {isDropdownOpen && <Dropdown/>}
     </Fragment>
     )
 }

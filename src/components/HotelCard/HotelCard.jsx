@@ -30,7 +30,7 @@ export const HotelCard = ({hotel}) => {
                     type: "ADD_TO_WISHLIST",
                     payload: hotel,            
                 });
-                navigate(`/wishlist`);
+                //navigate(`/wishlist`);
             }
             else{
                 wishlistDispatch({            

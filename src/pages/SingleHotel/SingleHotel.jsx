@@ -2,7 +2,8 @@ import axios from "axios";
 import { Fragment } from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { FinalPrice, HotelDetails, HotelImages, Navbar } from "../../components";
+import { FinalPrice, HotelDetails, HotelImages, Navbar, AuthModal, Dropdown } from "../../components";
+import { useAuth } from "../../context";
 
 import "./SingleHotel.css";
 
@@ -10,6 +11,8 @@ import "./SingleHotel.css";
 export const SingleHotel = () => {
     const {id} = useParams();
     const[singleHotel, setSingleHotel] = useState({});
+
+    const { isAuthModalOpen, isDropdownOpen} = useAuth();
 
     useEffect( ()=>{
         (async() => {
@@ -40,6 +43,8 @@ export const SingleHotel = () => {
                         <FinalPrice singleHotel={singleHotel}/>
                     </div>
                 </main>
+                {isAuthModalOpen && <AuthModal />}
+                {isDropdownOpen && <Dropdown/>}
             
         </Fragment>
     )
