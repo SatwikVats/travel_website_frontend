@@ -14,7 +14,7 @@ export const AuthModal = () => {
     const handleSignupClick = () => {
         authDispatch({
             type: "SET_TO_SIGNUP",
-        })
+        }) 
     }
 
     const handleModalCloseClick = () => {
