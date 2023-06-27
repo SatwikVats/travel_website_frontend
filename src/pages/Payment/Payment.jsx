@@ -3,36 +3,27 @@ import { Fragment, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useDate } from "../../context";
+import { useHotel } from "../../context";
 import "./Payment.css";
 
 export const Payment = () => {
     const {id} = useParams();
-    const[singleHotel, setSingleHotel] = useState({});
 
     const navigate = useNavigate();
-
-    useEffect( ()=>{
-        (async() => {
-        try{
-            const {data} = await axios.get(`https://dull-blue-reindeer-vest.cyclic.app/api/hotels/${id}`);
-            setSingleHotel(data);
-            console.log(data);
-        }
-        catch(err){
-            console.log(err);
-        }
-    })();
-    },[id]);
 
     const {guests, checkInDate, checkOutDate} = useDate();
 
     const numberOfNights = checkInDate && checkOutDate ?
     (checkOutDate.getTime()-checkInDate.getTime())/(1000*3600*24) : 0;
 
-    const {image, name, address, state, rating, price} = singleHotel;
+    const {hotel} = useHotel();
+    //console.log(hotel.hotel);
+    const {image, name, address, state, rating, price} = hotel.hotel;
+    //console.log(address);
+    
 
     
-    const totalPayableAmount = price? ((price*numberOfNights + 200)*100) : 10000;
+    const totalPayableAmount = price? (price*numberOfNights + 200) : 1;
 
     const loadScript = (source) => {
         return new Promise(resolve=>{
@@ -52,7 +43,7 @@ export const Payment = () => {
 
         const options = {
             key: "rzp_test_9wI6oIukOd6rLW",
-            amount: totalPayableAmount,
+            amount: totalPayableAmount*100,
             currency: "INR",
             name: "CheckInn",
             email: "vats.satwik@gmail.com",

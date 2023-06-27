@@ -1,11 +1,12 @@
 import "./FinalPrice.css";
-import {useDate} from "../../context";
+import {useDate, useHotel} from "../../context";
 import {DateSelector} from "../DateSelector/DateSelector";
 import { useNavigate } from "react-router-dom";
 
 export const FinalPrice = ({singleHotel}) => {
     const {_id, price, rating, numberOfguest} =singleHotel;
     const {guests, dateDispatch, checkInDate, checkOutDate} = useDate();
+    const { hotelDispatch} = useHotel();
 
     const numberOfNights = checkInDate && checkOutDate ?
     (checkOutDate.getTime()-checkInDate.getTime())/(1000*3600*24) : 0;
@@ -20,6 +21,10 @@ export const FinalPrice = ({singleHotel}) => {
     }
 
     const handleReserveClick = () => {
+        hotelDispatch({
+            type: "SET_HOTEL_BOOKING",
+            payload: singleHotel,
+        });
         navigate(`/confirm-booking/stay/:${_id}`);
     }
     

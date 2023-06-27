@@ -1,17 +1,26 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
+import { HotelReducer } from "../reducer";
 
-const initialState = {
+const initialValue = {
+    /*hotelImage: "",
+    hotelName:"", 
+    hotelAddress:"", 
+    hotelState:"", 
+    hotelRating:"", 
+    hotelPrice:"",*/
     hotel: {}
 }
 
-const HotelContext = createContext(initialState);
+const HotelContext = createContext(initialValue);
 
 const HotelProvider = ({children}) => {
 
-    const [hotel, setHotel] = useState({});
-
+    //const [{hotelImage, hotelName, hotelAddress, hotelState, hotelRating, hotelPrice}, hotelDispatch]
+    // = useReducer(HotelReducer, initialValue);
+    const [hotel, hotelDispatch] = useReducer(HotelReducer, initialValue);
+    
     return (
-        <HotelContext.Provider value={{hotel, setHotel}}>
+        <HotelContext.Provider value={{hotel, hotelDispatch}}>
             {children}
         </HotelContext.Provider>
     )
