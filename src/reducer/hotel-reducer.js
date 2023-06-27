@@ -10,5 +10,7 @@ export const HotelReducer = (state, {type, payload}) => {
                 ...state,
                 hotel: {},
             }
+        default:
+            return state;
     }
 }

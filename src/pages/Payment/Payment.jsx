@@ -1,5 +1,4 @@
-import axios from "axios";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useDate } from "../../context";
@@ -51,7 +50,7 @@ export const Payment = () => {
             description: "Thankyou for booking with us!",
 
             handler: ({payment_id}) => {
-                navigate("/");
+                navigate("/order-summary");
             },
             prefill: {
                 name: "Satwik Vats",

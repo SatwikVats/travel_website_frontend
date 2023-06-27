@@ -1,0 +1,28 @@
+.dropdown-container {
+    background-color: var(--background-color);
+    top: 4.5rem;
+    right: 2rem;
+    z-index: 9;
+    border-radius: 4px;
+    padding-bottom: 1rem;
+}
+
+
+.option-span {
+    padding: 1rem 11rem 1rem .875rem;
+}
+
+.acc_icon{
+    height: 6rem;
+    width: 6rem;
+    padding: 0.5rem;
+}
+
+.profile-menu{
+    padding-bottom: 1.25rem;
+}
+
+.profile-name{
+    font-size: 1.25rem;
+}
+

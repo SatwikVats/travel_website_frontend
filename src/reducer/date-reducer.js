@@ -40,6 +40,14 @@ export const DateReducer = (state, {type, payload}) => {
                 ...state,
                 isSearchModalOpen: !state.isSearchModalOpen,
             }
+        case "CLEAR_ALL":
+            return{
+                ...state,
+                destination: "",
+                guests: 0,
+                checkInDate: null,
+                checkOutDate: null,
+            }
         default:
             return state;
     }

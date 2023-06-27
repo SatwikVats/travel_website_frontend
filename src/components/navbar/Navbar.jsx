@@ -4,7 +4,7 @@ import { useDate, useAuth } from "../../context";
 export const Navbar = () => {
     const { destination, dateDispatch, checkInDate, checkOutDate, guests } = useDate();
 
-    const {authDispatch} = useAuth();
+    const {authDispatch, accessToken} = useAuth();
 
     const handleSearchClick = () => {
         dateDispatch({
@@ -13,9 +13,18 @@ export const Navbar = () => {
     }
 
     const handleAuthClick = () => {
-        authDispatch({
-            type: "SHOW_AUTH_MODAL",
-        })
+        if(!accessToken){
+            authDispatch({
+                type: "SHOW_AUTH_MODAL",
+            });
+        }
+        else{
+            console.log("Dropdown should open.");
+            authDispatch({
+                type: "SHOW_DROPDOWN",
+            });
+            //Function to show a dropdown with wishlist and logout option instead of Auth Modal.
+        }
     }
 
     return(
