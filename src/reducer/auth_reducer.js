@@ -5,6 +5,11 @@ export const AuthReducer = (state, {type, payload}) => {
                 ...state,
                 isAuthModalOpen: !state.isAuthModalOpen,
             };
+        case "SHOW_DROPDOWN":
+            return{
+                ...state,
+                isDropdownOpen: !state.isDropdownOpen,
+            }
         case "SET_TO_LOGIN":
             return{
                 ...state,
@@ -58,6 +63,12 @@ export const AuthReducer = (state, {type, payload}) => {
             return{
                 ...state,
                 username: payload,
+            }
+        case "CLEAR_CREDENTIALS":
+            return{
+                ...state,
+                accessToken: "",
+                username: "",
             }
         default:
             return state;

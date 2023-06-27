@@ -10,3 +10,4 @@ export {Filter} from "../components/Filters/Filter";
 export {AuthLogin} from "../components/Auth/AuthLogin";
 export {AuthSignup} from "../components/Auth/AuthSignup";
 export {AuthModal} from "../components/AuthModal/AuthModal";
+export {Dropdown} from "../components/Dropdown/Dropdown";
