@@ -1,7 +1,7 @@
 import "./HotelDetails.css";
 
 export const HotelDetails = ({singleHotel}) => {
-    const {hostName, hostJoinedOn, numberOfBathrooms, numberOfBeds, numberOfguest, numberOfBedrooms, numberOfStudies} = singleHotel; 
+    const {hostName, hostJoinedOn, /*numberOfBathrooms,*/ numberOfBeds, numberOfguest, numberOfBedrooms, numberOfStudies} = singleHotel; 
     
     return (
         <div className="hotel-details-container">

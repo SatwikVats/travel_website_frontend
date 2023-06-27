@@ -5,12 +5,12 @@ export const HotelImages = ({singleHotel}) => {
     return (
         <div className="hotel-image-container d-flex gap-small">
             <div className="primary-image-container">
-                <img className="hotel-primary-image" src={image} alt="primary-image" />
+                <img className="hotel-primary-image" src={image} alt="primary-hotel-pic" />
             </div>
             <div className="d-flex wrap gap-small">
                 {
                     imageArr && imageArr.map((image)=> 
-                    <img key={image} className="hotel-img" src={image} alt="hotel-image"/>)
+                    <img key={image} className="hotel-img" src={image} alt="hotel-pic"/>)
                 }
             </div>
 

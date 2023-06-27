@@ -1,12 +1,10 @@
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
 
 import "./DateSelector.css";
 import { useDate } from "../../context";
 
 export const DateSelector = ({placeholder, checkInType}) => {
-    //const [currentDate, setCurrentDate] = useState(new Date());
     const { checkInDate, checkOutDate, dateDispatch } = useDate();
 
     const handleDateChange = (date) => {

@@ -7,7 +7,7 @@ import "./Wishlist.css";
 export const Wishlist = () => {
     const {wishlist} = useWishlist();
 
-    const { accessToken, isAuthModalOpen, isDropdownOpen} = useAuth();
+    const {/*accessToken,*/ isAuthModalOpen, isDropdownOpen} = useAuth();
 
     
 

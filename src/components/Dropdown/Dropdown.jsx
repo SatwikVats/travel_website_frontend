@@ -6,7 +6,7 @@ import "./Dropdown.css";
 import account_icon from "./account_circle.png";
 
 export const Dropdown = () => {
-    const {username, email, number, authDispatch} = useAuth();
+    const {username, number, authDispatch} = useAuth();
     const navigate = useNavigate();
 
     const handleLogoutClick = () => {

@@ -54,7 +54,7 @@ export const Home = () => {
     const filteredHotelsByRoomsAndBeds = GetHotelsByRoomsAndBeds(filteredHotelsByPrice, noOfBathrooms, noOfBedrooms, noOfBeds);
     const filteredHotelsByProperty = GetHotelsByPropertyType(filteredHotelsByRoomsAndBeds, propertyType);
     const filteredHotelsByRatings = GetHotelsByRating(filteredHotelsByProperty, traveloRating);
-    const filteredHotelsByCancellation = GetHotelsByCancellation(filteredHotelsByRatings, isCancellable); //Not working currently.
+    /*const filteredHotelsByCancellation = GetHotelsByCancellation(filteredHotelsByRatings, isCancellable);*/ //Not working currently.
 
     return(
         <div className="relative">

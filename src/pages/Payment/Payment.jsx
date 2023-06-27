@@ -6,7 +6,7 @@ import { useHotel } from "../../context";
 import "./Payment.css";
 
 export const Payment = () => {
-    const {id} = useParams();
+    //const {id} = useParams();
 
     const navigate = useNavigate();
 
