@@ -26,16 +26,16 @@
     font-weight: 500;
     font-style: normal;
     padding: 8px;
-    color: var(--text-color-primary);
+    color: #363030;
 }
 
 .border-right-1px{
-    border-right: 1.5px solid var(--accent-color);
+    border-right: 1.5px solid #a2a1a1;
     height: 75%;
 }
 
 .search{
-    background-color: var(--primary-color);
+    background-color: #fc924c;
     height: 100%;
     padding: 8px;
     font-size: 0.8cm;
@@ -54,8 +54,13 @@
     
 }
 
+.nav{
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
 
- .menu {
+
+.menu {
     border: 2px;
     height: 50px;
     width: 50px;
