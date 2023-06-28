@@ -1,5 +1,5 @@
 .heading{
-    background-color: var(--background-color);
+    background-color: #fc924c;
     padding: 2px;
     border-bottom: 1px solid var(--accent-color);
     justify-content: space-between;
