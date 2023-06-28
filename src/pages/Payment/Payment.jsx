@@ -1,12 +1,11 @@
 import { Fragment } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useDate } from "../../context";
 import { useHotel } from "../../context";
 import "./Payment.css";
 
 export const Payment = () => {
-    //const {id} = useParams();
 
     const navigate = useNavigate();
 

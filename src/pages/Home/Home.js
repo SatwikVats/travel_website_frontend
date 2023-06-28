@@ -5,7 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Navbar, HotelCard, Categories, SearchStayWithDate, Filter, AuthModal, Dropdown } from "../../components";
 import "./Home.css";
 import { useCategory, useDate, useFilter, useAuth } from "../../context";
-import { GetHotelsByPrice, GetHotelsByRoomsAndBeds, GetHotelsByPropertyType, GetHotelsByRating, GetHotelsByCancellation} from "../../utils";
+import { GetHotelsByPrice, GetHotelsByRoomsAndBeds, GetHotelsByPropertyType, GetHotelsByRating/*, GetHotelsByCancellation*/} from "../../utils";
 
 export const Home = () => {
 
@@ -17,7 +17,7 @@ export const Home = () => {
     const [hotels, setHotels] = useState([]);
     const {hotelCategory} = useCategory();
     const {isSearchModalOpen} = useDate();
-    const {isFilterModalOpen, priceRange, noOfBathrooms, noOfBedrooms, noOfBeds, propertyType, traveloRating, isCancellable} = useFilter();
+    const {isFilterModalOpen, priceRange, noOfBathrooms, noOfBedrooms, noOfBeds, propertyType, traveloRating/*, isCancellable*/} = useFilter();
     
     const {isAuthModalOpen, isDropdownOpen} = useAuth();
     

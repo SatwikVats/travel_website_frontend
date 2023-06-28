@@ -21,7 +21,7 @@ export const SearchResult = () => {
                 console.log(err);
             }
         })();
-    }, [destination]);
+    }, [destination, hotelCategory]);
 
     const filteredSearchResults = hotels.filter(({address, city, state})=> 
     address.toLowerCase()===destination.toLowerCase() ||
