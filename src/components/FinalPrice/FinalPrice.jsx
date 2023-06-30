@@ -9,8 +9,8 @@ export const FinalPrice = ({singleHotel}) => {
     const { hotelDispatch} = useHotel();
     const { accessToken, authDispatch} = useAuth();
 
-    const numberOfNights = checkInDate && checkOutDate ?
-    (checkOutDate.getTime()-checkInDate.getTime())/(1000*3600*24) : 0;
+    const numberOfNights = checkOutDate>checkInDate? checkInDate && checkOutDate ?
+    (checkOutDate.getTime()-checkInDate.getTime())/(1000*3600*24) : 0 : 0;
 
     const navigate = useNavigate();
 
