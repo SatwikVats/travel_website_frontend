@@ -1,4 +1,4 @@
-## Repository for Backend Part
+## Repository for Backend
 
 --> https://github.com/SatwikVats/travel_website_backend
 
